@@ -5,7 +5,10 @@
 This is a Vite React expense tracker starter. Application code lives in `src/`:
 
 - `src/main.jsx` mounts the React app.
-- `src/App.jsx` contains the main expense tracker UI and state logic.
+- `src/App.jsx` owns the top-level transaction collection state and composes the app sections.
+- `src/Summary.jsx` renders income, expense, and balance totals from transactions.
+- `src/TransactionForm.jsx` owns add-transaction form state and emits new transaction data through props.
+- `src/TransactionList.jsx` owns transaction filter state and renders the transaction table.
 - `src/App.css` and `src/index.css` hold component and global styles.
 - `src/assets/` stores static assets imported by React components.
 - `public/` stores static files served directly by Vite.
@@ -26,9 +29,9 @@ No `npm test` script is configured yet.
 
 ## Coding Style & Naming Conventions
 
-Use modern React with functional components and hooks. Keep component names in PascalCase, such as `ExpenseList`, and use camelCase for variables, functions, and event handlers, such as `handleDeleteExpense`.
+Use modern React with functional components and hooks. Keep component names in PascalCase, such as `TransactionList`, and use camelCase for variables, functions, and event handlers, such as `handleAddTransaction`.
 
-Use two-space indentation in JSX, JavaScript, and CSS. Prefer clear, small functions over large inline blocks, especially in `App.jsx`. Keep styling class names descriptive and tied to UI intent, for example `.expense-form` or `.summary-total`.
+Use two-space indentation in JSX, JavaScript, and CSS. Prefer clear, small functions and focused components over large inline blocks, especially in `App.jsx`. Keep styling class names descriptive and tied to UI intent, for example `.add-transaction`, `.transactions`, or `.summary-card`.
 
 ESLint is configured in `eslint.config.js`; run `npm run lint` before submitting changes.
 
