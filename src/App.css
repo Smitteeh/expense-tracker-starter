@@ -32,6 +32,33 @@ h1 {
   margin-bottom: 4px;
 }
 
+.spending-chart {
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 24px;
+  background: #fff;
+}
+
+.spending-chart h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 300px;
+}
+
+.chart-bar {
+  cursor: pointer;
+}
+
+.empty-chart {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
 .income-amount {
   color: green;
   font-size: 20px;
@@ -114,6 +141,15 @@ form button {
   padding: 6px;
   border: 1px solid #ccc;
   font-size: 13px;
+}
+
+.clear-chart-filter {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background: #eee;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
 }
 
 table {

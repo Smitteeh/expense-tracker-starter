@@ -1,15 +1,16 @@
 import { useState } from 'react'
 
-function TransactionList({ transactions, categories, onDeleteTransaction }) {
+function TransactionList({ transactions, categories, selectedCategory, onClearSelectedCategory, onDeleteTransaction }) {
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
+  const activeCategoryFilter = selectedCategory || filterCategory;
 
   let filteredTransactions = transactions;
   if (filterType !== "all") {
     filteredTransactions = filteredTransactions.filter(t => t.type === filterType);
   }
-  if (filterCategory !== "all") {
-    filteredTransactions = filteredTransactions.filter(t => t.category === filterCategory);
+  if (activeCategoryFilter !== "all") {
+    filteredTransactions = filteredTransactions.filter(t => t.category === activeCategoryFilter);
   }
 
   const handleDeleteClick = (id) => {
@@ -33,6 +34,11 @@ function TransactionList({ transactions, categories, onDeleteTransaction }) {
             <option key={cat} value={cat}>{cat}</option>
           ))}
         </select>
+        {selectedCategory && (
+          <button className="clear-chart-filter" type="button" onClick={onClearSelectedCategory}>
+            Clear {selectedCategory}
+          </button>
+        )}
       </div>
 
       <table>

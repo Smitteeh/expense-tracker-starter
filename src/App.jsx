@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Summary from './Summary'
+import SpendingChart from './SpendingChart'
 import TransactionForm from './TransactionForm'
 import TransactionList from './TransactionList'
 
@@ -17,6 +18,7 @@ function App() {
     { id: 7, description: "Gas", amount: 45, type: "expense", category: "transport", date: "2025-01-08" },
     { id: 8, description: "Netflix", amount: 15, type: "expense", category: "entertainment", date: "2025-01-10" },
   ]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleAddTransaction = ({ description, amount, type, category }) => {
     const newTransaction = {
@@ -35,6 +37,9 @@ function App() {
     setTransactions(transactions.filter(t => t.id !== id));
   };
 
+  const handleSelectCategory = (category) => {
+    setSelectedCategory(currentCategory => currentCategory === category ? null : category);
+  };
 
   return (
     <div className="app">
@@ -42,11 +47,18 @@ function App() {
       <p className="subtitle">Track your income and expenses</p>
 
       <Summary transactions={transactions} />
+      <SpendingChart
+        transactions={transactions}
+        selectedCategory={selectedCategory}
+        onSelectCategory={handleSelectCategory}
+      />
 
       <TransactionForm categories={categories} onAddTransaction={handleAddTransaction} />
       <TransactionList
         transactions={transactions}
         categories={categories}
+        selectedCategory={selectedCategory}
+        onClearSelectedCategory={() => setSelectedCategory(null)}
         onDeleteTransaction={handleDeleteTransaction}
       />
     </div>
